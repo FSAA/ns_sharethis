@@ -5,6 +5,7 @@ namespace Nitsan\NsSharethis\ViewHelpers;
 use Nitsan\NsSharethis\Util\Utility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Description of ShareThisViewHelper
@@ -19,20 +20,21 @@ class ShareThisViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBa
     protected $escapeOutput = false;
     
     /**
-	 * Initialize arguments
-	 *
-	 * @return void
-	 * @api
-	 */
-	public function initializeArguments() {
-	}
-    /**
-     * 
-     * @param string $socials
-     * @param string $url
-     * @return string htmlContent
+     * Initialize arguments
+     *
+     * @return void
+     * @api
      */
-    public function render($socials="",$url="") {
+    public function initializeArguments() {
+        $this->registerArgument('socials', 'string', '', false, '');
+        $this->registerArgument('url', 'string', '', false, '');
+    }
+
+    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext) {
+        $templateVariableContainer = $renderingContext->getVariableProvider();
+        $socials = $arguments['socials'];
+        $url = $arguments['url'];
+
         $configuration = isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['ns_sharethis']) ? unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['ns_sharethis']) : '';
         
         if($socials === ""){
@@ -59,14 +61,14 @@ class ShareThisViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBa
             
             $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
             $pageRenderer->addHeaderData(Utility::getPublicJsRessourcesHtmlTags());
-			
-			$partialPath = 'EXT:ns_sharethis/Resources/Private/Partials/ShareButtons.html';
-			$variables = $this->templateVariableContainer->getByPath('settings');
-			$customPartialsPath = $variables['ns_sharethis']['customPartial'] ?? NULL;
-			if($customPartialsPath !== NULL){
-				$partialPath = $customPartialsPath;
-			}
-			
+            
+            $partialPath = 'EXT:ns_sharethis/Resources/Private/Partials/ShareButtons.html';
+            $variables = $templateVariableContainer->getByPath('settings');
+            $customPartialsPath = $variables['ns_sharethis']['customPartial'] ?? NULL;
+            if($customPartialsPath !== NULL){
+                $partialPath = $customPartialsPath;
+            }
+            
             $view = GeneralUtility::makeInstance('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
             $view->setTemplatePathAndFilename($partialPath);
             $view->assignMultiple($data);
