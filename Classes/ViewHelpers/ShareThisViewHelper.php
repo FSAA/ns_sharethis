@@ -12,7 +12,7 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
  *
  * @author SEVER26
  */
-class ShareThisViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper 
+class ShareThisViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper 
 {
     /**
      * @var boolean
