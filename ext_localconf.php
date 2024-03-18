@@ -10,7 +10,7 @@ if (version_compare(TYPO3_branch, '10.0', '>=')) {
     $moduleClass = 'Sharethis';
 }
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'Nitsan.NsSharethis',
+    'NsSharethis',
     'Nitsansharethis',
     [
         $moduleClass => 'list',
