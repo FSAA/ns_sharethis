@@ -6,6 +6,7 @@ use Nitsan\NsSharethis\Util\Utility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration
 
 /**
  * Description of ShareThisViewHelper
@@ -35,10 +36,12 @@ class ShareThisViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractView
         $socials = $arguments['socials'];
         $url = $arguments['url'];
 
-        $configuration = isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['ns_sharethis']) ? unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['ns_sharethis']) : '';
+        $backendConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('backend');
+
+        $configuration = isset($backendConfiguration['ns_sharethis']) ? unserialize($backendConfiguration['ns_sharethis']) : [];
 
         if($socials === ""){
-            $socials = $configuration['socials'];
+            $socials = $configuration['socials'] ?? '';
         }
 
         $socials = explode(',',$socials);
