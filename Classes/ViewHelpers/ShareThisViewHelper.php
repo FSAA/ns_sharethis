@@ -6,7 +6,7 @@ use Nitsan\NsSharethis\Util\Utility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
 /**
  * Description of ShareThisViewHelper
