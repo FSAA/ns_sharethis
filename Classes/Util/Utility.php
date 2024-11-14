@@ -1,6 +1,6 @@
 <?php
 
-namespace Nitsan\NsSharethis\Util;
+namespace NITSAN\NsSharethis\Util;
 /**
  * Description of Utility
  *

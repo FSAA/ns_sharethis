@@ -1,8 +1,8 @@
 <?php
 
-namespace Nitsan\NsSharethis\ViewHelpers;
+namespace NITSAN\NsSharethis\ViewHelpers;
 
-use Nitsan\NsSharethis\Util\Utility;
+use NITSAN\NsSharethis\Util\Utility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
