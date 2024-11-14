@@ -18,7 +18,7 @@
   },
   "autoload": {
     "psr-4": {
-      "NITSAN\\NsSharethis\\": "Classes/"
+      "Nitsan\\NsSharethis\\": "Classes/"
     }
   },
   "replace": {
